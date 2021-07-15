@@ -1,0 +1,41 @@
+cgi - common gateway interface. For this we need a web server which process some webserver apps
+we can then use this web server ip to 
+configure yum using the df -h command to check the dvd info
+/run/media/himanshu/RHEL-8-0-0-BaseOS-x86_64
+add this inside etc/yum.repos.d
+create a file as himan.rep and add the AppStream and BaseOs details as
+[dvd1]
+baseurl=file:///run/media/root/RHEL.xx/AppStream
+gpgcheck=0
+
+[dvd2]
+baseurl=file:///run/media/root/RHEL.xx/BaseOS
+gpgcheck=0
+
+yum repolist 
+yum install httpd
+systemctl restart httpd
+
+to get the cgi facility. by default already enable on this apache. If you need to run the code inside 
+add your code /var/www/cgi-bin
+
+cd /var/www/html
+
+1. /var/www/cgi-bin
+2. chmod +x
+3. #!/usr/bin/python3
+4. Content-Type - This is to tell browser to check the content and print what we've in the code
+
+so complete code will be
+
+#!/usr/bin/python3
+
+print("content-type: text/html")
+print()
+
+x=5
+print(x)
+
+print("Hello api")
+
+
